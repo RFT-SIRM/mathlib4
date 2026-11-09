@@ -1,14 +1,15 @@
 /-
-Copyright (c) 2026 RFT-SIRM. All rights reserved.
+Copyright (c) 2026 Evgeny Zaprudnov. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
-Authors: RFT-SIRM
+Authors: Evgeny Zaprudnov
 -/
 module
 
 public import Mathlib.Data.ZMod.Basic
 public import Mathlib.LinearAlgebra.LinearIndependent.Defs
-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
-import Mathlib.Tactic
+import Mathlib.Tactic.FinCases
+import Mathlib.Tactic.NormNum
+import Mathlib.Tactic.Push
 
 /-!
 # Incidence columns over ZMod 2
