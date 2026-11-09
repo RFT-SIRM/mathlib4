@@ -137,6 +137,15 @@ theorem isForest_comm (source target : E → V) :
     refine ⟨v, ?_⟩
     simpa [degreeParity, entry, add_comm] using hv
 
+/-- The sum of the incidence entries of one edge is zero in ZMod 2. -/
+private theorem entry_sum_vertices_eq_zero
+    {V : Type*} [Fintype V] [DecidableEq V]
+    (source target : E → V) (e : E) :
+    (∑ v : V, entry source target e v) = 0 := by
+  classical
+  norm_num [entry, Finset.sum_add_distrib]
+  exact ZMod.natCast_self 2
+
 /-- The sum of all vertex-degree parities is zero: every edge contributes two incidences. -/
 theorem degreeParity_sum_vertices_eq_zero
     {V E : Type*} [Fintype V] [DecidableEq V] [Fintype E] [DecidableEq E]
@@ -146,7 +155,7 @@ theorem degreeParity_sum_vertices_eq_zero
   simp only [degreeParity]
   rw [Finset.sum_comm]
   simp_rw [← Finset.mul_sum]
-  simp [entry, Finset.sum_add_distrib]
+  simp [entry_sum_vertices_eq_zero]
 
 /-- The reduced incidence column of an edge in a graph with an exterior root.
 The endpoint none denotes the root, whose row is omitted. -/
